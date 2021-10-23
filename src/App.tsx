@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import InputControl from "./components/forms/InputControl/InputControl";
+import useFormState from "./hooks/use-form-state";
+import "./App.css";
 
-function App() {
+export const App = () => {
+  const { form, handleAgeChange, handleFullNameChange } = useFormState({
+    fullName: "Alessio Sferro",
+    age: "27",
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <InputControl
+        label="Full name"
+        name="fullName"
+        required={true}
+        type="text"
+        onChange={handleFullNameChange}
+        value={form.fullName}
+      />
+
+      <InputControl
+        onChange={handleAgeChange}
+        value={form.age}
+        label="Age"
+        name="age"
+        required={false}
+        type="number"
+      />
+
+      <h3>Recap</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Full name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{form.fullName}</td>
+            <td>{form.age}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
-}
-
-export default App;
+};

@@ -1,0 +1,53 @@
+.input-control {
+  font-size: 18px;
+  padding: 12px 10px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  margin-top: 10px;
+  appearance: none;
+}
+
+.input-control:focus {
+  outline: none;
+}
+
+.input-control:not(.input-control--invalid):focus {
+  border-color: dodgerblue;
+}
+
+.input-control--invalid {
+  border-color: red;
+}
+
+.input-control--invalid + .input-control__label {
+  color: rgba(255, 0, 0, 0.72);
+}
+
+.input-control__container {
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  width: 100%;
+  position: relative;
+  margin-top: 30px;
+}
+
+.input-control__label {
+  color: #aaa;
+  position: absolute;
+  top: 23px;
+  font-size: 18px;
+  left: 11px;
+  opacity: 1;
+  transition: left 100ms ease-in-out, font-size 100ms ease-in-out,
+    opacity 100ms ease-in-out, top 100ms ease-in-out;
+}
+
+.input-control--filled + .input-control__label {
+  top: -15px;
+  font-size: 15px;
+  left: 0;
+}
+
+.input-control--filled:focus + .input-control__label {
+  color: dodgerblue;
+}
